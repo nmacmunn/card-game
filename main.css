@@ -1,0 +1,101 @@
+body {
+  padding: 0;
+  background: whitesmoke;
+  font-family: monospace;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+#container {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 760px;
+}
+
+#opportunities, #played {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.sheet {
+  background: white;
+  padding: 10px;
+  box-shadow: 2px 2px 6px 0px #999;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  transition: all 1s;
+}
+
+.right {
+  float: right;
+}
+
+#die {
+  /* height: 60px; */
+  width: 60px;
+}
+
+.card {
+  border: 1px solid black;
+  padding: 10px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 240px;
+  white-space: normal;
+  box-sizing: border-box;
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+.card.disabled, .card.disabled table {
+  border-color: lightgray;
+  color: lightgray;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.gray {
+  color: gray;
+}
+
+#gameover {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  background: rgba(255, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  visibility: hidden;
+}
+
+#status table {
+  width: 100%;
+  text-align: center;
+}
+
+body.gameover #gameover {
+  visibility: visible;
+}
+
+body.gameover #die {
+  pointer-events: none;
+}
+
+td {
+  padding: 2px;
+}

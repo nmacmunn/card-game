@@ -1,0 +1,120 @@
+<template name="card">
+  <div class="card">
+    <div>
+      <a href="#" class="right dismiss">x</a>
+      <div><strong>{{=it.description}}</strong></div>
+      <br>
+    </div>
+    <table>
+      <tr>
+        <td></td>
+        <td>Value</td>
+        <td>Yield</td>
+        <td>Time</td>
+        <td>Health</td>
+      </tr>
+      <!--{{ for(var i = 0; i < 7; i++) { }}-->
+      <tr>
+        <td>{{=i || ''}}</td>
+        <td>${{=it.cashValue(i).toFixed(0)}}</td>
+        <td>${{=it.cashYield(i).toFixed(0)}}</td>
+        <td>{{=it.timeValue(i)}}</td>
+        <td>{{=it.healthYield(i).toFixed(1)}}</td>
+      </tr>
+      <!--{{ } }}-->
+    </table>
+    {{? !it.played }}
+    <p>Expiry: {{=it.expiry}}</p>
+    {{? }}
+    <p>Life:   {{=it.life}}</p>
+  </div>
+</template>
+
+<template name="status">
+  <div class="sheet">
+    <table>
+      <tr>
+        <th>Cash</th>
+        <th>Net Worth</th>
+        <th>Cost of Living</th>
+        <th>Time</th>
+        <th>Health</th>
+        <th>Level</th>
+        <th>Age</th>
+        <th>Roll</th>
+      </tr>
+      <tr>
+        <td>${{=it.cash.toFixed(0)}}</td>
+        <td>${{=it.netWorth.toFixed(0)}}</td>
+        <td>${{=it.costOfLiving}}</td>
+        <td class="{{=it.time < 8 ? 'red' : ''}}">{{=it.time}}h</td>
+        <td class="{{=it.health < 50 ? 'red' : ''}}">{{=it.health.toFixed(0)}}%</td>
+        <td>{{=it.level}}</td>
+        <td>{{=it.age}}</td>
+        <td>{{=it.roll || ''}}</td>
+      </tr>
+      <tr>
+        <td class="{{=it.cashChange < 0 ? 'red' : 'green'}}">${{=it.cashChange.toFixed(0)}}</td>
+        <td class="{{=it.netWorthChange < 0 ? 'red' : 'green'}}">${{=it.netWorthChange.toFixed(0)}}</td>
+        <td class="{{=it.costOfLivingChange <= 0 ? 'green' : 'red'}}">${{=it.costOfLivingChange.toFixed(0)}}</td>
+        <td class="{{=it.timeChange < 0 ? 'red' : 'green'}}">{{=it.timeChange}}</td>
+        <td class="{{=it.healthChange < 0 ? 'red' : 'green'}}">{{=it.healthChange.toFixed(0)}}%</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</template>
+
+<template name="filter">
+  <label>
+    <input type="radio" name="{{=it.name}}" value="{{=it.value}}" {{?it.checked}}checked{{?}}>
+    <span>{{=it.value}} <span class="gray">{{=it.played}}/{{=it.total}}</span></span>
+</template>
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <div id="container">
+      <p class="right">
+        <label>
+          Auto <input id="autoRoll" type="checkbox"/>
+        </label>
+        <label>
+          Rate <input id="autoRate" type="number" min="1" max="60" value ="5"/>
+        </label>
+      </p>
+      <p><button id="die">Roll</button></p>
+      <div id="status"></div>
+      <p id="typeFilter"></p>
+      <!-- <h1>Turchin Profit</h1> -->
+      <div class="sheet">
+        <h3>Played</h3>
+        <div id="played" class="card-area"></div>
+      </div>
+      <div class="sheet">
+        <h3>Opportunities</h3>
+        <div id="opportunities" class="card-area"></div>
+      </div>
+    </div>
+    <div id="gameover">
+      <h1>Game Over</h1>
+    </div>
+  </body>
+  <script type="text/javascript" src="doT.js"></script>
+  <script type="text/javascript" src="helpers.js"></script>
+  <script type="text/javascript" src="cards/Base.js"></script>
+  <script type="text/javascript" src="cards/Education.js"></script>
+  <script type="text/javascript" src="cards/Investment.js"></script>
+  <script type="text/javascript" src="cards/Job.js"></script>
+  <script type="text/javascript" src="cards/Loan.js"></script>
+  <script type="text/javascript" src="cards/Wellness.js"></script>
+  <script type="text/javascript" src="Card.js"></script>
+  <script type="text/javascript" src="View.js"></script>
+  <script type="text/javascript" src="Status.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</html>
+
+
